@@ -129,18 +129,31 @@ namespace FiftyTifty.Tilemaps
             set;
         }
 
+        public Tilemap[] SubTilemaps
+		{
+            get; set;
+		}
+
         public byte LayerIndex
 		{
 			get; set;
         }
 
-        public Tilemap(int inGridSizeX, int inGridSizeY, byte inLayerIndex)
+        public bool IsWorld
+		{
+            get; private set;
+		}
+
+        public Tilemap(bool bIsWorld, int inGridSizeX, int inGridSizeY, byte inLayerIndex)
 		{
 
             this.GridSize = new Vector2Int (inGridSizeX, inGridSizeY);
             this.TileCoords = new uint[inGridSizeX, inGridSizeY];
             this.Tiles = new Tile[inGridSizeX, inGridSizeY];
+            
             this.LayerIndex = inLayerIndex;
+
+            this.IsWorld = bIsWorld;
 
             for (int iCounterX = 0; iCounterX < inGridSizeX; iCounterX++)
 			{
